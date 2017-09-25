@@ -1,0 +1,20 @@
+.map {
+  .menuMapArea{
+    margin-top:70px;
+    position: absolute;
+    width:20%;
+    z-index:2;
+    background-color: white;
+    .menuMapItem{
+      list-style-type: none;
+      position: relative;
+      background-color: #288feb;
+      height:100px;
+      width:98%;
+      margin: 2px 2px 2px 2px;
+      text-align: center;
+    }
+  }
+  .googleMap{
+  }
+}

@@ -30,7 +30,7 @@ var webpackConfig = {
     loaders: [{
       test: /.jsx?$/,
       include: Path.join(__dirname, './src/app'),
-      loader: 'babel',
+        loaders: [ 'babel?presets[]=react,presets[]=es2015' ],
     }],
   },
 };

@@ -12,6 +12,9 @@ function Header() {
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to="/map">Map</Link>
+          </li>
         </ul>
       </nav>
     </header>
