@@ -1,11 +1,14 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-function Home() {
-  return (
-    <div className="container home">
-      <h1>Home</h1>
-    </div>
-  )
-}
+export default class Home extends Component {
 
-export default Home;
+    render() {
+        console.log(this.props);
+        return (
+            <div className="container home">
+                <h1>Home</h1>
+            </div>
+        )
+
+    }
+};

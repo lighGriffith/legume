@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 
 
-export class MenuMap extends Component {
+export default class MenuMap extends Component {
     constructor(props) {
         super(props);
         this.list=props.listUser;
@@ -21,5 +21,3 @@ export class MenuMap extends Component {
 
     }
 };
-
-export default MenuMap;

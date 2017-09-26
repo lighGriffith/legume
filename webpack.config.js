@@ -39,7 +39,7 @@ var webpackConfig = {
 // Entry points
 // ------------------------------------------
 webpackConfig.entry = !isProduction
-  ? ['webpack-dev-server/client?http://localhost:' + port,
+  ? ['webpack-dev-server/client?http://'+ require("ip").address() + port,
      'webpack/hot/dev-server',
      Path.join(__dirname, './src/app/index')]
   : [Path.join(__dirname, './src/app/index')];
