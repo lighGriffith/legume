@@ -5,7 +5,6 @@ export default class MenuMap extends Component {
     constructor(props) {
         super(props);
         this.list=props.listUser;
-        console.log(this.list);
     }
 
     render() {
