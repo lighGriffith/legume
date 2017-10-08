@@ -29,8 +29,20 @@ export class MapContainer extends Component {
         return (
             <div className="container map">
                 <MenuMap className="menuMap" listUser={this.user}></MenuMap>
-                <Map className="googleMap" google={this.props.google} zoom={14}
-                     clickableIcons={false}></Map>
+                <Map className="googleMap" google={this.props.google} zoom={2}
+                     clickableIcons={false}>
+                    {this.user.map((marker, i) =>{
+                        return(
+                            <Marker
+                                key={marker.name}
+                                name={marker.name}
+                                position={{lat: marker.lat, lng:marker.lng}}
+                                onClick={() => console.log(marker.name)}
+                            />
+                        )
+                    })}
+                </Map>
+                <div className="fermier"></div>
             </div>
         );
     }
