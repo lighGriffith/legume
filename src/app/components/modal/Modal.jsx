@@ -21,7 +21,7 @@ export default class Modal extends React.Component {
                 {isOpen ?
                     (<div className={`row modal-content ${this.props.size || ""}`}>
                         {this.props.marker.name}
-                        <Grid/>
+                        <Grid marker={this.props.marker}/>
                         <div onClick={this.hideMe.bind(this) }
                              className="col-12 middle modal-footer">{this.props.footer}</div>
                     </div>) : null

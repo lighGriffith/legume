@@ -1,7 +1,164 @@
 var express = require('express');
 var User = require('../models/UserSchema');
+var Commande =require('../models/CommandeSchema');
+var Legume = require('../models/LegumeSchema');
 
 var itemRouter = express.Router();
+
+itemRouter
+    .route('/commandes')
+    .post(function (request, response) {
+
+        console.log('POST /commandes');
+
+        var item = new User(request.body);
+
+        item.save();
+
+        response.status(201).send(item);
+    })
+    .get(function (request, response) {
+
+        console.log('GET /commandes');
+
+        Commande.find(function (error, items) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+            console.log(items);
+
+            response.json(items);
+        });
+    });
+itemRouter
+    .route('/commande/:itemId')
+    .get(function (request, response) {
+
+        console.log('GET /commande/:acheteurId');
+
+        var itemId = request.params.itemId;
+        Commande.find({ idAcheteur: itemId }, function (error, item) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+
+            console.log(item);
+
+            response.json(item);
+
+        });
+    })
+    .put(function (request, response) {
+
+        console.log('PUT /items/:itemId');
+
+        var itemId = request.params.itemId;
+
+        User.findOne({ id: itemId }, function (error, item) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+
+            if (item) {
+                item.name = request.body.name;
+                item.description = request.body.description;
+                item.quantity = request.body.quantity;
+
+                item.save();
+
+                response.json(item);
+                return;
+            }
+
+            response.status(404).json({
+                message: 'Item with id ' + itemId + ' was not found.'
+            });
+        });
+    })
+    .patch(function (request, response) {
+
+        console.log('PATCH /items/:itemId');
+
+        var itemId = request.params.itemId;
+
+        User.findOne({ id: itemId }, function (error, item) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+
+            if (item) {
+
+                for (var property in request.body) {
+                    if (request.body.hasOwnProperty(property)) {
+                        if (typeof item[property] !== 'undefined') {
+                            item[property] = request.body[property];
+                        }
+                    }
+                }
+
+                // if (request.body.name) {
+                //   item.name = request.body.name;
+                // }
+
+                // if (request.body.description) {
+                //   item.description = request.body.description;
+                // }
+
+                // if (request.body.quantity) {
+                //   item.quantity = request.body.quantity;
+                // }
+
+                item.save();
+
+                response.json(item);
+                return;
+            }
+
+            response.status(404).json({
+                message: 'Item with id ' + itemId + ' was not found.'
+            });
+        });
+    })
+    .delete(function (request, response) {
+
+        console.log('DELETE /items/:itemId');
+
+        var itemId = request.params.itemId;
+
+        User.findOne({ id: itemId }, function (error, item) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+
+            if (item) {
+                item.remove(function (error) {
+
+                    if (error) {
+                        response.status(500).send(error);
+                        return;
+                    }
+
+                    response.status(200).json({
+                        'message': 'Item with id ' + itemId + ' was removed.'
+                    });
+                });
+            } else {
+                response.status(404).json({
+                    message: 'Item with id ' + itemId + ' was not found.'
+                });
+            }
+        });
+    });
 
 itemRouter
     .route('/items')

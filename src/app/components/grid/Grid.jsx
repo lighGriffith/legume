@@ -1,17 +1,33 @@
 import React,{Component} from 'react';
-
+import $ from "jquery";
 
 export default class Grid extends React.Component {
     constructor(props) {
         super(props);
-        this.cars = ["Saab", "Volvo", "BMW1","Saab2", "Volvo2", "BMccsW","Sacsab", "Volvcco", "c","Saafb", "Vodlvo", "aBMW","Saaccb", "Voglvo", "BcdMW"];
+        this.commandes = {};
     }
+
+    componentWillMount() {
+        var me=this;
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/api/commande/"+this.props.marker.ident,
+            async:false,
+            success: function (data) {
+                me.commandes=data;
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
+    }
+
     render() {
         return (
             <div className="wrapper">
-                {this.cars.map(function(cars){
+                {this.commandes.map(function(commande){
                     return (
-                        <div className="box" key={cars}>{cars}</div>
+                        <div className="box" key={commande._id}>{commande.typeLegume}</div>
                     )
                 }.bind(this))}
             </div>);
