@@ -6,13 +6,17 @@ export default class MenuMap extends Component {
         super(props);
         this.list=props.listUser;
     }
-
+    showModal(user) {
+        console.log(user);
+        this.props.showPopin(user);
+    }
     render() {
         return (
             <div className="menuMapArea">
                 {this.list.map(function(list){
                     return (
-                        <div className="menuMapItem" key={list.name}>{list.name}</div>
+                        <div onClick={this.showModal.bind(this,list) }
+                             className="menuMapItem" key={list.name}>{list.name}</div>
                     )
                 }.bind(this))}
             </div>

@@ -1,6 +1,7 @@
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import React, { Component } from 'react';
 import MenuMap from './MenuMap';
+import Modal from '../modal/Modal';
 import $ from 'jquery';
 
 export class MapContainer extends Component {
@@ -8,6 +9,22 @@ export class MapContainer extends Component {
     constructor(props) {
         super(props);
         this.user={};
+        this.state = {
+            showCommande: false
+        }
+        this.selectedMarker={};
+        this.hideModal = this.hideModal.bind(this);
+        this.showModal = this.showModal.bind(this);
+    }
+
+    hideModal(){
+        this.setState({showCommande: false});
+    }
+
+    showModal(marker){
+        this.selectedMarker=marker;
+        console.log(marker);
+        this.setState({showCommande: true})
     }
 
     componentWillMount() {
@@ -28,7 +45,14 @@ export class MapContainer extends Component {
     render() {
         return (
             <div className="container map">
-                <MenuMap className="menuMap" listUser={this.user}></MenuMap>
+                <MenuMap className="menuMap" showPopin={this.showModal} listUser={this.user}></MenuMap>
+                {this.state.showCommande && <Modal unmountMe={this.hideModal}
+                       isOpen={this.state.showCommande}
+                       title="Hello Title"
+                       body="Hello Body"
+                       footer="Hello Footer"
+                       marker={this.selectedMarker}
+                />}
                 <Map className="googleMap" google={this.props.google} zoom={2}
                      clickableIcons={false}>
                     {this.user.map((marker, i) =>{
@@ -37,12 +61,12 @@ export class MapContainer extends Component {
                                 key={marker.name}
                                 name={marker.name}
                                 position={{lat: marker.lat, lng:marker.lng}}
-                                onClick={() => console.log(marker.name)}
+                                onClick={this.showModal.bind(this,marker) }
                             />
+
                         )
                     })}
                 </Map>
-                <div className="fermier"></div>
             </div>
         );
     }

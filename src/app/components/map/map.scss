@@ -5,6 +5,8 @@
     width:20%;
     z-index:2;
     background-color: white;
+    overflow:auto;
+    max-height: 512px;
     .menuMapItem{
       list-style-type: none;
       position: relative;
@@ -15,13 +17,4 @@
       text-align: center;
     }
   }
-  .fermier{
-    left:20%;
-    position: absolute;
-    background-color: yellow;
-    height:100%;
-    width:80%;
-    display:none;
-  }
-
 }
