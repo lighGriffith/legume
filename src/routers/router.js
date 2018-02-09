@@ -5,6 +5,7 @@ var Legume = require('../models/LegumeSchema');
 
 var itemRouter = express.Router();
 
+
 itemRouter
     .route('/commandes')
     .post(function (request, response) {
@@ -187,13 +188,32 @@ itemRouter
             response.json(items);
         });
     });
+itemRouter
+    .route('/itemsPause/:pause')
+    .get(function (request, response) {
+
+        console.log('GET /itemsPause/:pause');
+        var pause = request.params.pause;
+        User.find(function (error, items) {
+            setTimeout(function(error, items){
+                if (error) {
+                    response.status(500).send(error);
+                    return;
+                }
+                console.log(items);
+
+                response.json(items);
+            },pause);
+        });
+    });
+
+
 
 itemRouter
     .route('/items/:itemId')
     .get(function (request, response) {
 
         console.log('GET /items/:itemId');
-
         var itemId = request.params.itemId;
 
         User.findOne({ id: itemId }, function (error, item) {
@@ -318,3 +338,4 @@ itemRouter
     });
 
 module.exports = itemRouter;
+
