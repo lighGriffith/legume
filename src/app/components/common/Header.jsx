@@ -7,7 +7,7 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
           </li>
           <li>
             <Link to="/about">About</Link>
@@ -15,6 +15,9 @@ function Header() {
           <li>
             <Link to="/map">Map</Link>
           </li>
+            <li>
+                <a href="/logout">logout</a>
+            </li>
         </ul>
       </nav>
     </header>

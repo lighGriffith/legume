@@ -77,12 +77,15 @@ module.exports = function(passport) {
         // asynchronous
         process.nextTick(function() {
             // if the user is not already logged in:
+            console.log(req.user);
+            console.log(email);
+            console.log(password);
             if (!req.user) {
                 User.findOne({ 'local.email' :  email }, function(err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);
-
+                    console.log(user);
                     // check to see if theres already a user with that email
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
@@ -95,8 +98,10 @@ module.exports = function(passport) {
                         newUser.local.password = newUser.generateHash(password);
 
                         newUser.save(function(err) {
-                            if (err)
+                            if (err){
+                                console.log("error save");
                                 return done(err);
+                            }
 
                             return done(null, newUser);
                         });
