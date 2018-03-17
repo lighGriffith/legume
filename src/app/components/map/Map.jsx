@@ -34,6 +34,7 @@ export class MapContainer extends Component {
             url: "http://localhost:3000/api/items",
             async:false,
             success: function (data) {
+                console.log(data);
                 me.user=data;
             },
             error:function(err){
@@ -58,10 +59,10 @@ export class MapContainer extends Component {
                     {this.user.map((marker, i) =>{
                         return(
                             <Marker
-                                key={marker.name}
-                                name={marker.name}
-                                position={{lat: marker.lat, lng:marker.lng}}
-                                onClick={this.showModal.bind(this,marker) }
+                                key={marker.local.name}
+                                name={marker.local.name}
+                                position={{lat: marker.local.lat, lng:marker.local.lng}}
+                                onClick={this.showModal.bind(this,marker.local) }
                             />
 
                         )

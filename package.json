@@ -26,10 +26,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitriMikadze/express-react-redux-starter"
+    "url": "git+https://github.com/lighGriffith/legume"
   },
-  "author": "Dimitri Mikadze",
-  "license": "MIT",
+  "author": "lighGriffith",
+  "license": "free",
   "devDependencies": {
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",
@@ -70,6 +70,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "google-maps-react": "^1.1.2",
+    "node-geocoder": "^3.22.0",
     "passport": "^0.1.18",
     "passport-local": "^0.1.6",
     "react": "^15.6.2",

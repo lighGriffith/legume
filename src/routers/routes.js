@@ -33,27 +33,19 @@ module.exports = function(app, passport) {
 
     // locally --------------------------------
         // LOGIN ===============================
-        // show the login form
-        app.get('/login', function(req, res) {
-            res.render('login.ejs', { message: req.flash('loginMessage') });
-        });
 
         // process the login form
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/legume', // redirect to the secure profile section
-            failureRedirect : '/', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-        }));
 
-        // SIGNUP =================================
-        // show the signup form
-        app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/legume', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
 
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/legume', // redirect to the secure profile section
+            successRedirect : '/', // redirect to the secure profile section
             failureRedirect : '/signup', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));

@@ -19,9 +19,15 @@ const store = createStoreWithMiddleware(reducers);
 ReactDOM.render(
   <Provider store={store}>
     <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
-        <Route path="/" component={SignIn}>
+        <Route path="/" >
+            <IndexRoute component={SignIn} />;
             <Route path="/signup" component={CreateNewUser} />;
         </Route>
+
+        <Route path="/signup" >
+            <IndexRoute component={CreateNewUser} />;
+        </Route>
+
         <Route path="/legume" component={requireAuthentication(App)}>
             <IndexRoute component={requireAuthentication(Home)} />;
             <Route path="/about" component={requireAuthentication(About)} />;

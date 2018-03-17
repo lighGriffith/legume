@@ -16,7 +16,7 @@ export default class MenuMap extends Component {
                 {this.list.map(function(list){
                     return (
                         <div onClick={this.showModal.bind(this,list) }
-                             className="menuMapItem" key={list.name}>{list.name}</div>
+                             className="menuMapItem" key={list.local.name}>{list.local.name}</div>
                     )
                 }.bind(this))}
             </div>
