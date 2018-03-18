@@ -4,7 +4,7 @@ import React,{Component} from 'react';
 export default class MenuMap extends Component {
     constructor(props) {
         super(props);
-        this.list=props.listUser;
+        this.users=props.listUser;
     }
     showModal(user) {
         console.log(user);
@@ -13,10 +13,10 @@ export default class MenuMap extends Component {
     render() {
         return (
             <div className="menuMapArea">
-                {this.list.map(function(list){
+                {this.users.map(function(user){
                     return (
-                        <div onClick={this.showModal.bind(this,list) }
-                             className="menuMapItem" key={list.local.name}>{list.local.name}</div>
+                        <div onClick={this.showModal.bind(this,user) }
+                             className="menuMapItem" key={user.local.name}>{user.local.name}</div>
                     )
                 }.bind(this))}
             </div>

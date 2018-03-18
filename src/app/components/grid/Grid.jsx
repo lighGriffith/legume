@@ -27,7 +27,7 @@ export default class Grid extends React.Component {
             <div className="wrapper">
                 {this.commandes.map(function(commande){
                     return (
-                        <div className="box" key={commande._id}>{commande.typeLegume}</div>
+                        <div className="boxGrid" key={commande._id}>{commande.typeLegume}</div>
                     )
                 }.bind(this))}
             </div>);

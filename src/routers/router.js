@@ -36,6 +36,27 @@ itemRouter
     });
 
 itemRouter
+    .route('/produits/:vendeur')
+    .get(function (request, response) {
+
+        console.log('GET /produits/:vendeur');
+
+        var vendeur = request.params.vendeur;
+        Produit.find({ vendeur: vendeur }, function (error, item) {
+
+            if (error) {
+                response.status(500).send(error);
+                return;
+            }
+
+            console.log(item);
+
+            response.json(item);
+
+        });
+    })
+
+itemRouter
     .route('/produit/:idProduit')
     .get(function (request, response) {
 

@@ -23,7 +23,6 @@ export class MapContainer extends Component {
 
     showModal(marker){
         this.selectedMarker=marker;
-        console.log(marker);
         this.setState({showCommande: true})
     }
 
@@ -35,7 +34,7 @@ export class MapContainer extends Component {
             async:false,
             success: function (data) {
                 console.log(data);
-                me.user=data;
+                me.users=data;
             },
             error:function(err){
                 console.log(err);
@@ -46,23 +45,20 @@ export class MapContainer extends Component {
     render() {
         return (
             <div className="container map">
-                <MenuMap className="menuMap" showPopin={this.showModal} listUser={this.user}></MenuMap>
+                <MenuMap className="menuMap" showPopin={this.showModal} listUser={this.users}></MenuMap>
                 {this.state.showCommande && <Modal unmountMe={this.hideModal}
                        isOpen={this.state.showCommande}
-                       title="Hello Title"
-                       body="Hello Body"
-                       footer="Hello Footer"
-                       marker={this.selectedMarker}
+                       marker={this.selectedMarker.local}
                 />}
                 <Map className="googleMap" google={this.props.google} zoom={2}
                      clickableIcons={false}>
-                    {this.user.map((marker, i) =>{
+                    {this.users.map((marker, i) =>{
                         return(
                             <Marker
                                 key={marker.local.name}
                                 name={marker.local.name}
                                 position={{lat: marker.local.lat, lng:marker.local.lng}}
-                                onClick={this.showModal.bind(this,marker.local) }
+                                onClick={this.showModal.bind(this,marker) }
                             />
 
                         )
