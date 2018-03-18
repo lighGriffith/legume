@@ -12,6 +12,7 @@ import reducers from './reducers';
 import './components/bundle.scss';
 import CreateNewUser from "./components/authentification/signIn/CreateNewUser";
 import {requireAuthentication} from "./components/authentification/routeChecker/RouteChecker";
+import Produits from "./components/produits/Produits";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -30,6 +31,7 @@ ReactDOM.render(
 
         <Route path="/legume" component={requireAuthentication(App)}>
             <IndexRoute component={requireAuthentication(Home)} />;
+            <Route path="/mesproduits" component={requireAuthentication(Produits)} />;
             <Route path="/about" component={requireAuthentication(About)} />;
             <Route path="/map" component={requireAuthentication(GoogleApiWrapper)} />
         </Route>

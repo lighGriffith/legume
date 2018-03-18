@@ -67,6 +67,7 @@ module.exports = function(passport) {
                 // all is well, return user
                 else{
                     console.log(done);
+                    req.session.user=user;
                     return done(null, user);
                 }
 
@@ -114,7 +115,7 @@ module.exports = function(passport) {
                                 newUser.local.lat = lat;
                                 newUser.local.lng = long;
                                 newUser.local.telephone = req.body.telephone;
-                                newUser.local.type = req.body.typeFermier?0:1;
+                                newUser.local.typeFermier = req.body.typeFermier?0:1;
 
                                 newUser.save(function(err) {
                                     if (err){
