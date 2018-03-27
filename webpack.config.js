@@ -27,11 +27,37 @@ var webpackConfig = {
     }),
   ],
   module: {
+      //react file loaders
     loaders: [{
       test: /.jsx?$/,
       include: Path.join(__dirname, './src/app'),
         loaders: [ 'babel?presets[]=react,presets[]=es2015' ],
-    }],
+    },
+        //url loader
+        {test: /images\/.*\.(png|jpg|svg|gif)$/,
+            loader: 'url-loader?limit=10000',
+        },
+        //file loader
+        {
+    test: /\.css$/,
+    loader: 'style!css?sourceMap'
+}, {
+    test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+    loader: "url?limit=10000&mimetype=application/font-woff"
+}, {
+    test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+    loader: "url?limit=10000&mimetype=application/font-woff"
+}, {
+    test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+    loader: "url?limit=10000&mimetype=application/octet-stream"
+}, {
+    test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+    loader: "file"
+}, {
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    loader: "url?limit=10000&mimetype=image/svg+xml"
+},
+],
   },
 };
 

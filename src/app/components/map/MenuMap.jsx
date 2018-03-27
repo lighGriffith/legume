@@ -7,6 +7,7 @@ export default class MenuMap extends Component {
         this.users=props.listUser;
     }
     showModal(user) {
+        console.log("menuMap showModal");
         console.log(user);
         this.props.showPopin(user);
     }

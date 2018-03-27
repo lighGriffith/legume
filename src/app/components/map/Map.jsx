@@ -22,6 +22,7 @@ export class MapContainer extends Component {
     }
 
     showModal(marker){
+        console.log("map showModal");
         this.selectedMarker=marker;
         this.setState({showCommande: true})
     }

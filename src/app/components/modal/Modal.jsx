@@ -35,8 +35,10 @@ export default class Modal extends React.Component {
 
     render() {
         let isOpen = this.props.isOpen;
+        console.log("isopen");
+        console.log(isOpen);
         return (
-            <div className={`${isOpen ? "flex middle center modal open" : ""}`}>
+            <div className={`${isOpen ? "flex middle center myModal open" : ""}`}>
                 {isOpen ?
                     (<div className={`row modal-content ${this.props.size || ""}`}>
                         {this.produits.map(function(produit){
