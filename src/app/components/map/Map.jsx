@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MenuMap from './MenuMap';
 import Modal from '../modal/Modal';
 import $ from 'jquery';
-
+import AchatCommande from "../AchatCommande/AchatCommande";
 export class MapContainer extends Component {
 
     constructor(props) {
@@ -15,6 +15,8 @@ export class MapContainer extends Component {
         this.selectedMarker={};
         this.hideModal = this.hideModal.bind(this);
         this.showModal = this.showModal.bind(this);
+        this.openAchatCommande=this.openAchatCommande.bind(this);
+        this.hideAchatCommande=this.hideAchatCommande.bind(this);
     }
 
     hideModal(){
@@ -43,13 +45,30 @@ export class MapContainer extends Component {
         });
     }
 
+
+    hideAchatCommande(){
+        console.log("hideAchatCommande");
+        this.setState({showAchatCommande: false});
+    }
+
+    openAchatCommande(produit){
+        console.log("openAchatCommande dans map.jsx");
+        this.selectedCommande=produit;
+        this.setState({showAchatCommande: true});
+        console.log(this.selectedCommande);
+    }
+
     render() {
         return (
             <div className="container map">
-                <MenuMap className="menuMap" showPopin={this.showModal} listUser={this.users}></MenuMap>
-                {this.state.showCommande && <Modal unmountMe={this.hideModal}
+                <MenuMap className="menuMap"  showPopin={this.showModal} listUser={this.users}></MenuMap>
+                {this.state.showCommande && <Modal unmountMe={this.hideModal} showCommande={this.openAchatCommande}
                        isOpen={this.state.showCommande}
                        marker={this.selectedMarker.local}
+                />}
+                {this.state.showAchatCommande && <AchatCommande unmountMe={this.hideAchatCommande}
+                                                                isOpenAchat={this.state.showAchatCommande}
+                                                                selectedCommande={this.selectedCommande}
                 />}
                 <Map className="googleMap" google={this.props.google} zoom={2}
                      clickableIcons={false}>

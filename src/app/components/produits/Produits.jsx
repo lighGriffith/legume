@@ -79,7 +79,7 @@ export default class Produits extends React.Component {
                     return (
                         <div className="box" key={produit._id}>
                             {produit.nom} : {produit.quantite} kg - {produit.prix} €/kg
-                            <input type="button" value="Supprimer Produit"
+                            <input type="button" value="Supprimer"
                                    onClick={this.supprimerProduit.bind(this,produit)}/>
                         </div>
                     )

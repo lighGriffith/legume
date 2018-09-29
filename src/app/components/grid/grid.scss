@@ -1,5 +1,6 @@
 .wrapper {
     display: grid;
+    width: 100%;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr) ) ;
     background-color: #fff;
@@ -7,8 +8,8 @@
 }
 
 .boxGrid {
-    background-color: #444;
-    color: #fff;
+    color: orange;
+    font-weight: bold;
     border-radius: 5px;
     padding: 20px;
     font-size: 150%;
@@ -16,5 +17,4 @@
     display: inline-block;
     margin-top: 20px;
     margin-left: 20px;
-
 }

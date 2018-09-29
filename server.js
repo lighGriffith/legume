@@ -10,15 +10,20 @@ var cookieParser = require('cookie-parser');
 require('./config/passport')(passport);
 var session = require('express-session');
 
-//middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//middleware bodyparser
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({
+    secret: 'ilovescotchscotchyscotchscotch',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

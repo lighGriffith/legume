@@ -1,20 +1,40 @@
 .map {
-  .menuMapArea{
+  .menuMapAreaContainer{
     margin-top:70px;
     position: absolute;
     width:20%;
     z-index:2;
-    background-color: white;
-    overflow:auto;
-    max-height: 512px;
-    .menuMapItem{
-      list-style-type: none;
+    max-height: 400px;
+    height:100%;
+    background-color: transparent;
+    .menuMapOverflowHidden{
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
       position: relative;
-      background-color: #288feb;
-      height:100px;
-      width:98%;
-      margin: 2px 2px 2px 2px;
-      text-align: center;
+      .menuMapArea{
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: -15px;
+        overflow: auto;
+        .menuMapItem{
+          list-style-type: none;
+          position: relative;
+          background-color: #288feb;
+          height:100px;
+          width:93%;
+          margin: 2px 2px 2px 2px;
+          text-align: center;
+        }
+        .bord_arrondis {
+          border:2px solid black;
+          -moz-border-radius:2%;
+          -webkit-border-radius:2%;
+          border-radius:2%;
+        }
+      }
     }
   }
 }

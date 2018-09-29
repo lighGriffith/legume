@@ -16,10 +16,13 @@ export default class SignIn extends Component {
     render() {
         var styles = {
             color:'violet',
-            backgroundImage: 'url('+image+')'
+            backgroundImage: 'url('+image+')',
+            minHeight: '100vh',
+            justifyContent: 'center',
+            display: '-webkit-flex'
         };
         return (
-            <div className="container-login100" style ={ styles }>
+            <div className="container-100" style ={ styles }>
                 <div className="wrap-login100 p-t-30 p-b-50">
                     <span className="login100-form-title p-b-41">Login</span>
                     <form className="login100-form validate-form p-b-33 p-t-5" action="/login" method="post">

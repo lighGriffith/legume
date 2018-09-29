@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-
+import image from '../../../images/champBle.jpg';
 
 export default class MenuMap extends Component {
     constructor(props) {
@@ -7,20 +7,26 @@ export default class MenuMap extends Component {
         this.users=props.listUser;
     }
     showModal(user) {
-        console.log("menuMap showModal");
-        console.log(user);
         this.props.showPopin(user);
     }
     render() {
+      var styles = {
+          color:'black',
+          backgroundImage: 'url('+image+')'
+      };
         return (
-            <div className="menuMapArea">
-                {this.users.map(function(user){
-                    return (
-                        <div onClick={this.showModal.bind(this,user) }
-                             className="menuMapItem" key={user.local.name}>{user.local.name}</div>
-                    )
-                }.bind(this))}
+          <div className="menuMapAreaContainer">
+            <div className="menuMapOverflowHidden">
+              <div className="menuMapArea">
+                  {this.users.map(function(user){
+                      return (
+                          <div onClick={this.showModal.bind(this,user) } style ={ styles }
+                               className="menuMapItem bord_arrondis" key={user.local.name}>{user.local.name}</div>
+                      )
+                  }.bind(this))}
+              </div>
             </div>
+          </div>
         )
 
     }
